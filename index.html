@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="bg-gray-300 text-gray-800">
+    <!-- Header -->
+    <header class="border-t-4 border-blue-700 bg-white shadow-md">
+      <nav
+        class="container mx-auto flex items-center justify-between py-4"
+        x-data="{ isSideMenuOpen: false}"
+      >
+        <!-- Hambuguer Icon -->
+        <div class="flex">
+          <button @click="isSideMenuOpen = !isSideMenuOpen">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+              <path
+                class="heroicon-ui"
+                d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Side Menu -->
+        <div
+          class="absolute top-0 left-0 bg-white border border-right h-full w-48"
+          x-show="isSideMenuOpen"
+          x-transition:enter="transition ease-out duration-300 -ml-64"
+          x-transition:enter-start=""
+          x-transition:enter-end="transform translate-x-64"
+          x-transition:leave="transition ease-out duration-300"
+          x-transition:leave-start=""
+          x-transition:leave-end="transform -translate-x-64"
+        >
+          <div class="flex justify-end">
+            <button
+              class="text-2xl mr-3 mt-1"
+              @click="isSideMenuOpen = false"
+              @click.away="isSideMenuOpen = false"
+            >
+              &times;
+            </button>
+          </div>
+          <ul>
+            <li>
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  class="text-gray-600"
+                >
+                  <path
+                    d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                    class="heroicon-ui"
+                  ></path>
+                </svg>
+                <span class="ml-2">Account</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  class="text-gray-600"
+                >
+                  <path
+                    d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+                    class="heroicon-ui"
+                  ></path>
+                </svg>
+                <span class="ml-2">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  class="text-gray-600"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                    d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  ></path></svg
+                ><span class="ml-2">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Header Dropdown -->
+        <div class="relative" x-data="{ isOpen: false }">
+          <button
+            @click="isOpen = !isOpen"
+            class="flex items-center"
+            @keydown.escape="isOpen = false"
+          >
+            <img
+              src="http://www.gravatar.com/avatar?d=mm"
+              alt="avatar"
+              class="w-8 h-8 rounded-full"
+            />
+            <svg
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"
+                class="heroicon-ui"
+              ></path>
+            </svg>
+          </button>
+          <!-- Dropdown -->
+          <ul
+            x-show.transition.in.duration.200ms.opacity.scale.25.origin.top.right.out.duration.200ms.opacity.origin.top.right="isOpen"
+            @click.away="isOpen = false"
+            class="absolute font-normal bg-white shadow overflow-hidden rounded w-48 border mt-2 py-1 right-0 z-20"
+          >
+            <li>
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  class="text-gray-600"
+                >
+                  <path
+                    d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                    class="heroicon-ui"
+                  ></path>
+                </svg>
+                <span class="ml-2">Account</span>
+              </a>
+            </li>
+            <li class="border-b border-gray-400">
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  class="text-gray-600"
+                >
+                  <path
+                    d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+                    class="heroicon-ui"
+                  ></path>
+                </svg>
+                <span class="ml-2">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                <svg
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  class="text-gray-600"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                    d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                  ></path></svg
+                ><span class="ml-2">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Tabs -->
+    <div
+      class="container mx-auto p-4 mb-4"
+      x-data="{
+      tab: 'tab1',
+      tabs: [
+      {
+          title: 'Modals',
+          code: 'tab1',
+          isOpen: true,
+      },
+      {
+        title: 'Images',
+        code: 'tab2',
+        isOpen: false,
+      },
+      {
+        title: 'Scroll Detector',
+        code: 'tab3',
+        isOpen: false,
+      },
+      {
+        title: 'Accordion',
+        code: 'tab4',
+        isOpen: false,
+      },
+      {
+        title: 'Fetch',
+        code: 'tab5',
+        isOpen: false,
+      },
+      {
+        title: 'TodoApp',
+        code: 'tab6',
+        isOpen: false,
+      }
+  ]
+    }"
+    >
+      <h2 class="text-2xl font-bold">Alpine Playground</h2>
+      <ul class="flex border-b mt-6">
+        <template x-for="tabsItem in tabs" :key="tabsItem.code">
+          <li class="-mb-px mr-1">
+            <a
+              class="inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold"
+              :class="{ 'bg-white text-blue-700 border-l border-t border-r': tabsItem.isOpen}"
+              href="#"
+              @click.prevent="tabs.map((tabItem) => tabItem.isOpen = false), tab = tabsItem.code, tabsItem.isOpen = true"
+              x-text="tabsItem.title"
+            ></a>
+          </li>
+        </template>
+      </ul>
+      <div class="content bg-white px-4 py-4 border-l border-r border-b pt-4">
+        <div x-show="tab === 'tab1'">
+          Tab1 content. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Nesciunt sunt, consectetur eos quod perferendis mollitia
+          consequuntur natus, porro molestiae qui iusto deserunt rerum tempore
+          voluptatum itaque. Ad, nisi esse cum quidem consequuntur ullam
+          obcaecati.
+          <!-- Modal -->
+          <div
+            class="container mx-auto px-4 xl:px-64 mt-12 mb-12"
+            x-data="{ isOpen: false }"
+          >
+            <button
+              class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+              @click="isOpen = true
+      $nextTick(() => $refs.modalCloseBtn.focus())
+      "
+            >
+              Open Modal 1
+            </button>
+            <button
+              @click="isOpen = !isOpen"
+              class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+            >
+              Open Modal 2
+            </button>
+            <button
+              @click="isOpen = !isOpen"
+              class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+            >
+              Open Modal 3
+            </button>
+
+            <div
+              style="background-color: rgba(0, 0, 0, 0.5)"
+              class="mx-auto absolute top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto"
+              x-show="isOpen"
+              @click.away="isOpen = false"
+              x-transition:enter="transition ease-out duration-100"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="transition ease-out duration-100"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+            >
+              <div class="container mx-auto rounded p-4 mt-2 overflow-y-auto">
+                <div class="bg-white rounded px-8 py-8">
+                  <h1 class="font-bold text-2xl mb-3">Modal Title</h1>
+                  <div class="modal-body">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Porro amet repellat recusandae.
+                    </p>
+                  </div>
+                  <div class="mt-4">
+                    <button
+                      class="bg-blue-700 text-white px-4 py-3 mt-4 text-sm rounded"
+                      @click="isOpen = false"
+                      @click.away="isOpen = false"
+                      x-ref="modalCloseBtn"
+                    >
+                      Close Modal
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-show="tab === 'tab2'">
+          <div class="container mx-auto px-4 mt-4" x-data="{ image: 'image1' }">
+            <div>
+              <img
+                src="https://media.istockphoto.com/vectors/jesus-washing-apostles-feet-vector-id1248367010"
+                alt="mac pro"
+                x-show="image === 'image1'"
+              />
+              <img
+                src="https://media.istockphoto.com/vectors/foot-position-warning-sign-sticker-reminding-of-keeping-distance-to-vector-id1215962756?b=1&k=6&m=1215962756&s=170667a&w=0&h=gb5IVtYZ07XZwvzQitEf6YLjA03WupvyXwZusp4R554="
+                alt="mac pro"
+                x-show="image === 'image2'"
+              />
+              <img
+                src="https://media.istockphoto.com/vectors/jesus-washing-apostles-feet-vector-id1248367010"
+                alt="mac pro"
+                x-show="image === 'image3'"
+              />
+            </div>
+            <div class="flex items-center mt-4">
+              <a
+                href="#"
+                class="border border-transparent hover:border-blue-500"
+                @click.prevent="image = 'image1'"
+                :class="{'border-blue-500' : image === 'image1'}"
+                ><img
+                  src="https://media.istockphoto.com/vectors/jesus-washing-apostles-feet-vector-id1248367010"
+                  alt="mac pro"
+                  class="w-12"
+              /></a>
+              <a
+                href="#"
+                class="border border-transparent hover:border-blue-500 ml-2"
+                @click.prevent="image = 'image2'"
+                :class="{'border-blue-500' : image === 'image2'}"
+                ><img
+                  src="https://media.istockphoto.com/vectors/foot-position-warning-sign-sticker-reminding-of-keeping-distance-to-vector-id1215962756?b=1&k=6&m=1215962756&s=170667a&w=0&h=gb5IVtYZ07XZwvzQitEf6YLjA03WupvyXwZusp4R554="
+                  alt="mac pro"
+                  class="w-12"
+              /></a>
+              <a
+                href="#"
+                class="border border-transparent hover:border-blue-500 ml-2"
+                @click.prevent="image = 'image3'"
+                :class="{'border-blue-500' : image === 'image3'}"
+                ><img
+                  src="https://media.istockphoto.com/vectors/jesus-washing-apostles-feet-vector-id1248367010"
+                  alt="mac pro"
+                  class="w-12"
+              /></a>
+            </div>
+          </div>
+        </div>
+        <div x-show="tab === 'tab3'">
+          <div x-data="{ atTop: true, atBottom: false }">
+            <nav
+              class="p-4 w-full fixed"
+              :class="{'bg-green shadow-md' : !atTop}"
+              @scroll.window="atTop = (window.pageYOffset > 20) ? false : true"
+            >
+              Top Nav goes here
+            </nav>
+            <div class="container mx-auto p-4 pt-16">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. In
+              maxime, enim omnis consequatur ratione odio voluptas pariatur nam
+              recusandae, quidem ducimus placeat consectetur voluptate nostrum
+              sit cupiditate animi atque, est fugiat ullam excepturi. Harum
+              delectus voluptates fugit quibusdam aut magnam commodi autem
+              cumque alias, rerum dolorum aperiam. Tempora explicabo sit rerum
+              inventore et minima beatae assumenda vero ducimus eligendi.
+              Doloremque nam, magnam, omnis natus vero debitis ducimus,
+              laudantium mollitia possimus enim recusandae tempora cum amet.
+              Mollitia eaque fuga maiores culpa in vero error quaerat ab, alias
+              quam dicta eligendi magni voluptas dolorem consectetur perferendis
+              praesentium modi, officiis quo distinctio facere ea! Vel, iste
+              ratione veniam laudantium dolorum facere nulla laboriosam
+              molestias vero quisquam eaque id necessitatibus omnis? Ducimus
+              adipisci aperiam illo reiciendis molestias! Sequi placeat error in
+              quasi temporibus quae non itaque ipsam, cupiditate eos, quas vel,
+              velit veritatis labore, esse aut atque dolorum maxime perferendis
+              enim ullam. Dolorum suscipit accusamus dignissimos eos odit
+              consequuntur, corrupti ex dolore, inventore ab. Debitis deserunt,
+              commodi enim! Nihil modi optio recusandae soluta incidunt enim
+              placeat reprehenderit nam totam impedit qui minus, dolorum harum
+              neque laudantium, facilis culpa omnis nesciunt eius mollitia!
+              Vitae, modi deleniti porro fuga doloribus facilis voluptas eaque
+              dicta unde molestias.
+            </div>
+          </div>
+        </div>
+        <!-- Accordion -->
+        <div x-show="tab === 'tab4'">
+          <div
+            class="container mx-auto px-2 py-2"
+            x-data="{
+            faqs: [
+            {
+                question: 'Why do I need Alpine JS?',
+                answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iure quas laudantium dicta impedit, est id delectus molestiae deleniti enim nobis rem et nihil.',
+                isOpen: true,
+            },
+            {
+                question: 'Why am I so awesome?',
+                answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi cumque, nulla harum aspernatur veniam ullam provident neque temporibus autem itaque odit.',
+                isOpen: true,
+            },
+            {
+                question: 'Why learn on Scrimba?',
+                answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi cumque, nulla harum aspernatur veniam ullam provident neque temporibus autem itaque odit.',
+                isOpen: true,
+            },
+        ]
+          }"
+          >
+            <h2 class="text-2xl font-bold">FAQs</h2>
+            <div class="leading-loose text-lg mt-6">
+              <template x-for="faq in faqs" :key="faq.question">
+                <div>
+                  <button
+                    class="w-full font-bold border-b border-gray-400 py-3 flex justify-between items-center mt-4"
+                    @click="faq.isOpen = !faq.isOpen"
+                  >
+                    <div x-text="faq.question"></div>
+                    <svg
+                      x-show="!faq.isOpen"
+                      class="fill-current"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        class="heroicon-ui"
+                        d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z"
+                      />
+                    </svg>
+                    <svg
+                      x-show="faq.isOpen"
+                      class="fill-current"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        class="heroicon-ui"
+                        d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm4-8a1 1 0 01-1 1H9a1 1 0 010-2h6a1 1 0 011 1z"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    class="text-gray-700 text-sm mt-2"
+                    x-text="faq.answer"
+                    x-show="faq.isOpen"
+                  ></div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+        <!-- Fetch-->
+        <div x-show="tab === 'tab5'">
+          <div
+            class="container mx-auto px-4"
+            x-data="{ staticQuote: '', dynamicQuote: '' }"
+            x-init="staticQuote = 'Awesome quote', fetch('https://api.kanye.rest').then(response => response.json()).then(data => dynamicQuote=data.quote)"
+          >
+            <div
+              class="flex items-center text-center justify-center h-screen text-2xl italic"
+              x-text="staticQuote"
+            ></div>
+            <div
+              class="flex items-center text-center justify-center h-screen text-2xl italic"
+              x-text="dynamicQuote"
+            ></div>
+          </div>
+        </div>
+        <!-- TodoApp -->
+        <div x-show="tab === 'tab6'">
+          <div class="container mx-auto max-w-sm px-4 my-4" x-data="todos()">
+            <div class="bg-white shadow-md rounded px-6 py-4">
+              <h2 class="text-2xl font-bold">Todo App</h2>
+
+              <div class="mt-4 mb-6">
+                <input
+                  type="text"
+                  class="shadow w-full px-2 py-2"
+                  x-model="userInput"
+                  @keydown.enter="addTodo()"
+                />
+              </div>
+
+              <ul class="mb-6">
+                <template x-for="todo in todos" :key="todo.id">
+                  <li class="flex items-center justify-between mt-3">
+                    <div
+                      class="flex items-center"
+                      :class="{'line-through' : todo.isComplete}"
+                    >
+                      <input type="checkbox" x-model="todo.isComplete" />
+                      <div class="ml-3" x-text="todo. title"></div>
+                    </div>
+                    <button class="text-xl ml-2" @click="deleteTodo(todo.id)">
+                      &times;
+                    </button>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="todos.js"></script>
+</html>
